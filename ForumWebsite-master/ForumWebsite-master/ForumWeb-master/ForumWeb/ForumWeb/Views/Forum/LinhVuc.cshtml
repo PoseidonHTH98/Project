@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ForumWeb.Models.LinhVuc>
+@foreach (var item in Model)
+{
+    <ul>
+        <li>
+            <a href="" class="top_parent">
+                &nbsp;
+                @item.TenLinhVuc
+            </a>
+        </li>
+    </ul>    
+}
