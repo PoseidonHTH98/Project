@@ -46,29 +46,13 @@
                     @Html.Action("CongDong","Forum")
                 </ul>
             </div>
-            <p class="quotebox">"You can't depend on your eyes if your imagination is out of focus" ~ Mark Twain</p>
         </div>
         <div id="content">
-            <h2>Your Company Name</h2>
-            <blockquote>
-                All images were created by me so feel free to use them if you wish. The page has been tested in Mozilla and IE7. The page validates as XHTML 1.0 Transitional using valid CSS.<br />
-                For more FREE templates visit my website.
-            </blockquote>
-            <h2>Header</h2>
-            <div class="gallery">
-                <img src="Images/img.jpg" alt="" /> <img src="Images/img.jpg" alt="" /> <img src="Images/img.jpg" alt="" /> <img src="Images/img.jpg" alt="" />
-                <div class="clear"></div>
+            <div>
+                @RenderBody()
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi quis ligula. Donec tortor purus, ornare vel, tincidunt at, lacinia ac, leo. Nunc fermentum congue odio. Mauris cursus, pede vitae sagittis luctus, dolor felis aliquam arcu, ac pulvinar lacus massa non ipsum. </p>
-            <h2>Header</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi quis ligula. Donec tortor purus, ornare vel, tincidunt at, lacinia ac, leo. Nunc fermentum congue odio. Mauris cursus, pede vitae sagittis luctus, dolor felis aliquam arcu, ac pulvinar lacus massa non ipsum. </p>
         </div>
         <div id="footer"> <a href="http://all-free-download.com/free-website-templates/">Trang chủ</a> | <a href="http://all-free-download.com/free-website-templates/">Liên hệ</a> | &copy; 2019 Diễn Đàn Công Nghệ (Tech Forum) | Thiết kế bởi <a href="http://www.mitchinson.net"> Phạm Vũ Ngọc Hội & Hoàng Thành Hiếu</a></div>
     </div>
 </body>
 </html>
-<body>
-    <div>
-        @RenderBody()
-    </div>
-</body>

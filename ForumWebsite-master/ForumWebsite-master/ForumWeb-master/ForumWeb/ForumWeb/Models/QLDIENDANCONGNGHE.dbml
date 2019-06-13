@@ -17,7 +17,9 @@
       <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="NgayGuiBai" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenBai" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="BaiGui_HinhAnh" Member="HinhAnhs" ThisKey="MaBaiGui" OtherKey="MaBaiGui" Type="HinhAnh" />
       <Association Name="BaiGui_NguoiSuDung" Member="NguoiSuDungs" ThisKey="MaBaiGui" OtherKey="MaBaiGui" Type="NguoiSuDung" />
       <Association Name="ChuDe_BaiGui" Member="ChuDe" ThisKey="MaChuDe" OtherKey="MaChuDe" Type="ChuDe" IsForeignKey="true" />
       <Association Name="CongDong_BaiGui" Member="CongDong" ThisKey="MaCongDong" OtherKey="MaCongDong" Type="CongDong" IsForeignKey="true" />
@@ -38,6 +40,14 @@
       <Association Name="CongDong_BaiGui" Member="BaiGuis" ThisKey="MaCongDong" OtherKey="MaCongDong" Type="BaiGui" />
     </Type>
   </Table>
+  <Table Name="dbo.HinhAnh" Member="HinhAnhs">
+    <Type Name="HinhAnh">
+      <Column Name="MaHinhAnh" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HinhAnh" Member="HinhAnh1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaBaiGui" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BaiGui_HinhAnh" Member="BaiGui" ThisKey="MaBaiGui" OtherKey="MaBaiGui" Type="BaiGui" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.LinhVuc" Member="LinhVucs">
     <Type Name="LinhVuc">
       <Column Name="MaLinhVuc" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -53,8 +63,8 @@
       <Column Name="MatKhau" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="BaiGui_NguoiSuDung" Member="BaiGui" ThisKey="MaBaiGui" OtherKey="MaBaiGui" Type="BaiGui" IsForeignKey="true" />

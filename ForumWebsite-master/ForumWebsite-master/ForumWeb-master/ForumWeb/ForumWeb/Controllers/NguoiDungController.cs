@@ -28,7 +28,7 @@ namespace ForumWeb.Controllers
             var MatKhauNhapLai = collection["MatKhauNhapLai"];
             var HoTen = collection["HoTen"];
             var DiaChi = collection["DiaChi"];
-            var GioiTinh = collection["GioiTinh"];
+            var GioiTinh = collection["GioiTinh"].ToString();
             var NgaySinh = String.Format("{0:MM/dd/yyyy}", collection["NgaySinh"]);
             var SoDienThoai = collection["SoDienThoai"];
             var Email = collection["Email"];
@@ -52,17 +52,13 @@ namespace ForumWeb.Controllers
             {
                 ViewData["Loi5"] = "Phải nhập địa chỉ";
             }
-            else if (String.IsNullOrEmpty(GioiTinh))
-            {
-                ViewData["Loi6"] = "Phải nhập giới tính";
-            }
             else if (String.IsNullOrEmpty(SoDienThoai))
             {
-                ViewData["Loi7"] = "Phải nhập số điện thoại";
+                ViewData["Loi6"] = "Phải nhập số điện thoại";
             }
             if (String.IsNullOrEmpty(Email))
             {
-                ViewData["Loi8"] = "Phải nhập email";
+                ViewData["Loi7"] = "Phải nhập email";
             }
             else
             {
@@ -70,7 +66,6 @@ namespace ForumWeb.Controllers
                 NSD.MatKhau = MatKhau;
                 NSD.HoTen = HoTen;
                 NSD.DiaChi = DiaChi;
-                NSD.GioiTinh = GioiTinh;
                 NSD.NgaySinh = DateTime.Parse(NgaySinh);
                 NSD.SoDienThoai = SoDienThoai;
                 NSD.Email = Email;

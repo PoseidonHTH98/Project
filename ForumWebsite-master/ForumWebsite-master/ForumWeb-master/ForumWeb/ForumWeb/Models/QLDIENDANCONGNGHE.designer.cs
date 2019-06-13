@@ -42,6 +42,9 @@ namespace ForumWeb.Models
     partial void InsertCongDong(CongDong instance);
     partial void UpdateCongDong(CongDong instance);
     partial void DeleteCongDong(CongDong instance);
+    partial void InsertHinhAnh(HinhAnh instance);
+    partial void UpdateHinhAnh(HinhAnh instance);
+    partial void DeleteHinhAnh(HinhAnh instance);
     partial void InsertLinhVuc(LinhVuc instance);
     partial void UpdateLinhVuc(LinhVuc instance);
     partial void DeleteLinhVuc(LinhVuc instance);
@@ -109,6 +112,14 @@ namespace ForumWeb.Models
 			get
 			{
 				return this.GetTable<CongDong>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HinhAnh> HinhAnhs
+		{
+			get
+			{
+				return this.GetTable<HinhAnh>();
 			}
 		}
 		
@@ -261,7 +272,11 @@ namespace ForumWeb.Models
 		
 		private System.Nullable<System.DateTime> _NgayGuiBai;
 		
+		private string _TenBai;
+		
 		private string _NoiDung;
+		
+		private EntitySet<HinhAnh> _HinhAnhs;
 		
 		private EntitySet<NguoiSuDung> _NguoiSuDungs;
 		
@@ -291,12 +306,15 @@ namespace ForumWeb.Models
     partial void OnEmailChanged();
     partial void OnNgayGuiBaiChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayGuiBaiChanged();
+    partial void OnTenBaiChanging(string value);
+    partial void OnTenBaiChanged();
     partial void OnNoiDungChanging(string value);
     partial void OnNoiDungChanged();
     #endregion
 		
 		public BaiGui()
 		{
+			this._HinhAnhs = new EntitySet<HinhAnh>(new Action<HinhAnh>(this.attach_HinhAnhs), new Action<HinhAnh>(this.detach_HinhAnhs));
 			this._NguoiSuDungs = new EntitySet<NguoiSuDung>(new Action<NguoiSuDung>(this.attach_NguoiSuDungs), new Action<NguoiSuDung>(this.detach_NguoiSuDungs));
 			this._ChuDe = default(EntityRef<ChuDe>);
 			this._CongDong = default(EntityRef<CongDong>);
@@ -476,6 +494,26 @@ namespace ForumWeb.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBai", DbType="NVarChar(200)")]
+		public string TenBai
+		{
+			get
+			{
+				return this._TenBai;
+			}
+			set
+			{
+				if ((this._TenBai != value))
+				{
+					this.OnTenBaiChanging(value);
+					this.SendPropertyChanging();
+					this._TenBai = value;
+					this.SendPropertyChanged("TenBai");
+					this.OnTenBaiChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoiDung", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string NoiDung
 		{
@@ -493,6 +531,19 @@ namespace ForumWeb.Models
 					this.SendPropertyChanged("NoiDung");
 					this.OnNoiDungChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BaiGui_HinhAnh", Storage="_HinhAnhs", ThisKey="MaBaiGui", OtherKey="MaBaiGui")]
+		public EntitySet<HinhAnh> HinhAnhs
+		{
+			get
+			{
+				return this._HinhAnhs;
+			}
+			set
+			{
+				this._HinhAnhs.Assign(value);
 			}
 		}
 		
@@ -629,6 +680,18 @@ namespace ForumWeb.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_HinhAnhs(HinhAnh entity)
+		{
+			this.SendPropertyChanging();
+			entity.BaiGui = this;
+		}
+		
+		private void detach_HinhAnhs(HinhAnh entity)
+		{
+			this.SendPropertyChanging();
+			entity.BaiGui = null;
 		}
 		
 		private void attach_NguoiSuDungs(NguoiSuDung entity)
@@ -872,6 +935,157 @@ namespace ForumWeb.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HinhAnh")]
+	public partial class HinhAnh : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaHinhAnh;
+		
+		private string _HinhAnh1;
+		
+		private int _MaBaiGui;
+		
+		private EntityRef<BaiGui> _BaiGui;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaHinhAnhChanging(int value);
+    partial void OnMaHinhAnhChanged();
+    partial void OnHinhAnh1Changing(string value);
+    partial void OnHinhAnh1Changed();
+    partial void OnMaBaiGuiChanging(int value);
+    partial void OnMaBaiGuiChanged();
+    #endregion
+		
+		public HinhAnh()
+		{
+			this._BaiGui = default(EntityRef<BaiGui>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHinhAnh", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaHinhAnh
+		{
+			get
+			{
+				return this._MaHinhAnh;
+			}
+			set
+			{
+				if ((this._MaHinhAnh != value))
+				{
+					this.OnMaHinhAnhChanging(value);
+					this.SendPropertyChanging();
+					this._MaHinhAnh = value;
+					this.SendPropertyChanged("MaHinhAnh");
+					this.OnMaHinhAnhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="HinhAnh", Storage="_HinhAnh1", DbType="NVarChar(100)")]
+		public string HinhAnh1
+		{
+			get
+			{
+				return this._HinhAnh1;
+			}
+			set
+			{
+				if ((this._HinhAnh1 != value))
+				{
+					this.OnHinhAnh1Changing(value);
+					this.SendPropertyChanging();
+					this._HinhAnh1 = value;
+					this.SendPropertyChanged("HinhAnh1");
+					this.OnHinhAnh1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBaiGui", DbType="Int NOT NULL")]
+		public int MaBaiGui
+		{
+			get
+			{
+				return this._MaBaiGui;
+			}
+			set
+			{
+				if ((this._MaBaiGui != value))
+				{
+					if (this._BaiGui.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaBaiGuiChanging(value);
+					this.SendPropertyChanging();
+					this._MaBaiGui = value;
+					this.SendPropertyChanged("MaBaiGui");
+					this.OnMaBaiGuiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BaiGui_HinhAnh", Storage="_BaiGui", ThisKey="MaBaiGui", OtherKey="MaBaiGui", IsForeignKey=true)]
+		public BaiGui BaiGui
+		{
+			get
+			{
+				return this._BaiGui.Entity;
+			}
+			set
+			{
+				BaiGui previousValue = this._BaiGui.Entity;
+				if (((previousValue != value) 
+							|| (this._BaiGui.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BaiGui.Entity = null;
+						previousValue.HinhAnhs.Remove(this);
+					}
+					this._BaiGui.Entity = value;
+					if ((value != null))
+					{
+						value.HinhAnhs.Add(this);
+						this._MaBaiGui = value.MaBaiGui;
+					}
+					else
+					{
+						this._MaBaiGui = default(int);
+					}
+					this.SendPropertyChanged("BaiGui");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LinhVuc")]
 	public partial class LinhVuc : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1004,9 +1218,9 @@ namespace ForumWeb.Models
 		
 		private string _DiaChi;
 		
-		private string _GioiTinh;
+		private bool _GioiTinh;
 		
-		private System.Nullable<System.DateTime> _NgaySinh;
+		private System.DateTime _NgaySinh;
 		
 		private string _SoDienThoai;
 		
@@ -1030,9 +1244,9 @@ namespace ForumWeb.Models
     partial void OnHoTenChanged();
     partial void OnDiaChiChanging(string value);
     partial void OnDiaChiChanged();
-    partial void OnGioiTinhChanging(string value);
+    partial void OnGioiTinhChanging(bool value);
     partial void OnGioiTinhChanged();
-    partial void OnNgaySinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaySinhChanging(System.DateTime value);
     partial void OnNgaySinhChanged();
     partial void OnSoDienThoaiChanging(string value);
     partial void OnSoDienThoaiChanged();
@@ -1170,8 +1384,8 @@ namespace ForumWeb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GioiTinh", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string GioiTinh
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GioiTinh", DbType="Bit NOT NULL")]
+		public bool GioiTinh
 		{
 			get
 			{
@@ -1190,8 +1404,8 @@ namespace ForumWeb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
-		public System.Nullable<System.DateTime> NgaySinh
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime NOT NULL")]
+		public System.DateTime NgaySinh
 		{
 			get
 			{
