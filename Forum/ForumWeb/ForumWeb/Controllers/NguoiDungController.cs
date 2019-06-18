@@ -115,8 +115,8 @@ namespace ForumWeb.Controllers
         {
             if (Session["TenDangNhap"] != null)
             {
-                NguoiSuDung nsd = (NguoiSuDung) Session["TenDangNhap"];
-                ViewBag.ThongBao =nsd.TenDangNhap;
+                NguoiSuDung nsd = (NguoiSuDung)Session["TenDangNhap"];
+                ViewBag.ThongBao = nsd.TenDangNhap;
             }
             return PartialView();
         }

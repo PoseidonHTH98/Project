@@ -34,7 +34,7 @@ namespace ForumWeb.Controllers
             var linhvuc = from lv in data.LinhVucs select lv;
             return PartialView(linhvuc);
         }
-        public ActionResult TheoLinhVuc(int id, int ? page)
+        public ActionResult TheoLinhVuc(int id, int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 4;
@@ -46,7 +46,7 @@ namespace ForumWeb.Controllers
             var congdong = from cd in data.CongDongs select cd;
             return PartialView(congdong);
         }
-        public ActionResult TheoCongDong(int id, int ? page)
+        public ActionResult TheoCongDong(int id, int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 4;
@@ -58,7 +58,7 @@ namespace ForumWeb.Controllers
             var chude = from cde in data.ChuDes select cde;
             return PartialView(chude);
         }
-        public ActionResult TheoChuDe(int id, int ? page)
+        public ActionResult TheoChuDe(int id, int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 4;
@@ -97,7 +97,7 @@ namespace ForumWeb.Controllers
                 NoiDung = collection["NoiDung"].ToString().Trim()
             };
             var message = "";
-            if (!Regex.IsMatch(baiViet.SoDienThoai,@"^\d{10}$"))
+            if (!Regex.IsMatch(baiViet.SoDienThoai, @"^\d{10}$"))
             {
                 message += "Số điện thoại không được bỏ trống";
             }
@@ -105,12 +105,12 @@ namespace ForumWeb.Controllers
             {
                 message += "Tên bài không được bỏ trống";
             }
-            if(!string.IsNullOrEmpty(message))
+            if (!string.IsNullOrEmpty(message))
             {
                 ViewBag.MaChuDe = new SelectList(data.ChuDes, "MaChuDe", "TenChuDe");
                 ViewBag.MaCongDong = new SelectList(data.CongDongs, "MaCongDong", "TenCongDong");
                 ViewBag.MaLinhVuc = new SelectList(data.LinhVucs, "MaLinhVuc", "TenLinhVuc");
-                return View("VietBai",baiViet);
+                return View("VietBai", baiViet);
             }
             baiViet.MaNguoiSuDung = (Session["TenDangNhap"] as NguoiSuDung).MaNguoiSuDung;
             data.BaiGuis.InsertOnSubmit(baiViet);
