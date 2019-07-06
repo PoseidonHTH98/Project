@@ -1,0 +1,58 @@
+﻿@model ForumWeb.Models.BaiGui
+
+@{
+    ViewBag.Title = "VietBai";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td> Mã Chủ Đề:</td>
+            <td>
+                @Html.DropDownList("MaChuDe", null, htmlAttributes: new { })
+                @Html.ValidationMessageFor(model => model.MaChuDe, "", new { })
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td> Mã Cộng Đồng:</td>
+            <td>
+                @Html.DropDownList("MaCongDong", null, htmlAttributes: new { })
+                @Html.ValidationMessageFor(model => model.MaCongDong, "", new { })
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td> Mã Lĩnh Vực:</td>
+            <td>
+                @Html.DropDownList("MaLinhVuc", null, htmlAttributes: new { })
+                @Html.ValidationMessageFor(model => model.MaLinhVuc, "", new { })
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Tên Bài:</td>
+            <td>
+                <textarea cols="50" htmlattributes="{ }" id="TenBai" name="TenBai" rows="3"></textarea>
+                <span class="field-validation-valid" data-valmsg-for="TenBai" data-valmsg-replace="true"></span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td> Nội Dung:</td>
+            <td>
+                <textarea cols="50" htmlattributes="{ }" id="NoiDung" name="NoiDung" rows="20"></textarea>
+                <span class="field-validation-valid" data-valmsg-for="NoiDung" data-valmsg-replace="true"></span>
+            </td>
+        </tr>
+
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                @Html.ActionLink("Về trang chủ", "Index")
+                <input type="submit" value="Đăng Bài" class="btn btn-primary" />
+            </td>
+        </tr>
+    }
+</table>

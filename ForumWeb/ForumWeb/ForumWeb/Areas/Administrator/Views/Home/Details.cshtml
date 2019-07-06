@@ -1,0 +1,91 @@
+﻿@model ForumWeb.Models.BaiGui
+
+@{
+    ViewBag.Title = "Chi Tiết";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+    <h2 style="color:white">Chi Tiết Bài Viết</h2>
+
+<div style="color:white">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Chủ Đề")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Cộng Đồng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CongDong.TenCongDong)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Lĩnh Vực")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinhVuc.TenLinhVuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Người Dùng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiSuDung.TenDangNhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày Gửi Bài")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayGuiBai)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên Bài")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenBai)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nội Dung Bài Viết")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+        <dt>
+            @Html.DisplayName("Tình Trạng")
+        </dt>
+
+        <dd>
+            @if (@Model.TinhTrang == null)
+            {
+                @Html.DisplayName("Chưa")
+            }
+            else if (Model.TinhTrang == false)
+            {
+                @Html.DisplayName("Duyệt")
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("SuaBai", new { id = Model.MaBaiGui })" rel="tooltip" data-placement="left" title="Sửa" class="btn btn-success btn-simple">
+        <i class="material-icons">edit</i>
+    </a>
+    <a href="@Url.Action("BaiViet", new { id = Model.MaBaiGui })" rel="tooltip" data-placement="left" title="Back To List" class="btn btn-success btn-simple">
+        <i class="fa fa-sign-out"></i>
+    </a>
+</p>

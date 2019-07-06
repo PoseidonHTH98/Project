@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietBaiGui";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<section id="blogs" class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="row m0 blog">
+                        <div class="row m0 blogDateTime">
+                            <i class="fa fa-calendar"></i> @Model.NgayGuiBai
+                        </div>
+                        <div class="row m0 featureImg">
+                            <a href="single-post.html">
+                                <img src="~/Images/cropped-newspost-png.png" alt="Faceted Search Has Landed" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="row m0 postExcerpts">
+                            <div class="row m0 postExcerptInner">
+                                <a href="single-post.html" class="postTitle row m0"><h4>@Model.TenBai</h4></a>
+                                <p>
+                                    @Model.NoiDung
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
